@@ -6,7 +6,7 @@ VALUES
 (1, "Tess", "Ibn", "1", "1"),
 (2, "Bert", "Traore", "4", "5"),
 (3, "Mo", "Salah", "2", "3"),
-(4, "Ousmane", "Dembele", "3", "1"),
+(4, "Ousmane", "Dembele", "3", "1");
 
 
 

@@ -5,6 +5,7 @@ const inquirer = require('inquirer');
 const cTable = require('console.table');
 const cFonts = require('cfonts');
 
+//const PORT = process.env.PORT || 3306;
 
 cFonts.say('Employee||Manager', {
     font: 'block',              // define the font face
@@ -20,3 +21,76 @@ cFonts.say('Employee||Manager', {
 	transitionGradient: false,  // define if this is a transition between colors directly
 	env: 'node'                 // define the environment CFonts is being executed in
 });
+
+const db = require('./db/connection')
+
+
+const addDepartment = require('./lib/add_department');
+const addEmployee = require('./lib/add_employee');
+const addRole = require('./lib/add_role');
+const updateEmployee = require('./lib/update_employee');
+const viewDepartments = require('./lib/view_department');
+const viewEmployees = require('./lib/view_employee');
+const viewRoles = require('./lib/view_role');
+
+
+const trackerPrompts = [];
+
+function init(){
+
+function openingQuestions (){
+inquirer.prompt([
+    {
+        type: 'list',
+        name: 'toDo',
+        message: "What would you like to do? ",
+        choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', "Add Department", "Quit"]
+
+    }
+])
+
+.then(function (data) {
+    const role = data.toDo;
+    console.log(data.toDo);
+    // look into a switch case
+    switch (role) {
+        case "View All Employees":
+            return viewEmployees();
+            break;
+        case "Add Employee":
+            return addEmployee();
+            break;
+        case "Update Employee Role":
+            return updateEmployee();
+            break;
+        case " View All Roles":
+            return viewRoles();
+            break;
+        case "Add Role":
+            return addRole();
+            break;
+        case "View All Departments":
+            return viewDepartments();
+        	break;
+        case "Add Department":
+            return addDepartment();
+            break;
+    }
+})
+};
+
+function addDepartment(){
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'departmentName',
+            message: 'What is the name of the department?'
+        }
+    ])
+}
+
+openingQuestions();
+
+}
+
+init ();

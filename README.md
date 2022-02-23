@@ -6,7 +6,7 @@
 
 ## Screenshot
 
-![EmployeetrackerDB](assets/images/employee-tracker-db.png)
+![Database schema that includes tables labeled “employee,” role,” and “department](assets/images/employee-tracker-db.png)
 
 ## Description
 This is an employer tracker. It keeps track of every employee in the company depending on their name, their role orwho they report to.
