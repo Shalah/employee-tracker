@@ -25,26 +25,24 @@ cFonts.say('Employee||Manager', {
 const db = require('./db/connection')
 
 
-const addDepartment = require('./lib/add_department');
-const addEmployee = require('./lib/add_employee');
-const addRole = require('./lib/add_role');
-const updateEmployee = require('./lib/update_employee');
-const viewDepartments = require('./lib/view_department');
-const viewEmployees = require('./lib/view_employee');
-const viewRoles = require('./lib/view_role');
+
+const addDepartment = require('./lib/addDepartment');
+const addEmployee = require('./lib/addEmployee');
+const addRole = require('./lib/addRole');
+const updateEmployee = require('./lib/updateEmployee');
+const viewDepartment = require('./lib/viewDepartment');
+const viewEmployee = require('./lib/viewEmployee');
+const viewRole = require('./lib/viewRole');
 
 
-const trackerPrompts = [];
-
-function init(){
-
-function openingQuestions (){
+let startingQuestions = () =>{
 inquirer.prompt([
     {
         type: 'list',
         name: 'toDo',
         message: "What would you like to do? ",
-        choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', "Add Department", "Quit"]
+        choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View Role',
+		'Add Role', 'View Department', "Add Department", "Quit"]
 
     }
 ])
@@ -55,7 +53,7 @@ inquirer.prompt([
     // look into a switch case
     switch (role) {
         case "View All Employees":
-            return viewEmployees();
+            return viewEmployee();
             break;
         case "Add Employee":
             return addEmployee();
@@ -63,15 +61,15 @@ inquirer.prompt([
         case "Update Employee Role":
             return updateEmployee();
             break;
-        case " View All Roles":
-            return viewRoles();
-            break;
+		case "View Role":
+			return viewRole();
+			break;
         case "Add Role":
             return addRole();
             break;
-        case "View All Departments":
-            return viewDepartments();
-        	break;
+		case "View Department":
+			return viewDepartment();
+			break;
         case "Add Department":
             return addDepartment();
             break;
@@ -79,18 +77,29 @@ inquirer.prompt([
 })
 };
 
-function addDepartment(){
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'departmentName',
-            message: 'What is the name of the department?'
-        }
-    ])
-}
 
-openingQuestions();
 
-}
 
-init ();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+startingQuestions();
+
+
+
+// module.exports = startingQuestions;
